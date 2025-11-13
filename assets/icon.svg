@@ -1,0 +1,46 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="256" height="256" fill="#0b0f10"/>
+  
+  <!-- Outer Hexagon -->
+  <path d="M 128 20 L 210 70 L 210 170 L 128 220 L 46 170 L 46 70 Z" 
+        fill="none" 
+        stroke="#4a7c6f" 
+        stroke-width="3"/>
+  
+  <!-- Inner Hexagon -->
+  <path d="M 128 50 L 185 85 L 185 155 L 128 190 L 71 155 L 71 85 Z" 
+        fill="none" 
+        stroke="#5a9d7e" 
+        stroke-width="2"/>
+  
+  <!-- Shield Shape -->
+  <path d="M 128 65 L 165 85 L 165 135 C 165 155 150 170 128 175 C 106 170 91 155 91 135 L 91 85 Z" 
+        fill="#1f2a2e" 
+        stroke="#5a9d7e" 
+        stroke-width="2"/>
+  
+  <!-- Lock Icon -->
+  <rect x="118" y="115" width="20" height="25" 
+        fill="#4a7c6f" 
+        stroke="#5a9d7e" 
+        stroke-width="1.5"/>
+  <path d="M 118 115 L 118 105 C 118 98 122 92 128 92 C 134 92 138 98 138 105 L 138 115" 
+        fill="none" 
+        stroke="#5a9d7e" 
+        stroke-width="2"/>
+  <circle cx="128" cy="127" r="3" fill="#d7e0e6"/>
+  
+  <!-- Corners -->
+  <line x1="30" y1="30" x2="50" y2="30" stroke="#4a7c6f" stroke-width="2"/>
+  <line x1="30" y1="30" x2="30" y2="50" stroke="#4a7c6f" stroke-width="2"/>
+  
+  <line x1="226" y1="30" x2="206" y2="30" stroke="#4a7c6f" stroke-width="2"/>
+  <line x1="226" y1="30" x2="226" y2="50" stroke="#4a7c6f" stroke-width="2"/>
+  
+  <line x1="30" y1="226" x2="50" y2="226" stroke="#4a7c6f" stroke-width="2"/>
+  <line x1="30" y1="226" x2="30" y2="206" stroke="#4a7c6f" stroke-width="2"/>
+  
+  <line x1="226" y1="226" x2="206" y2="226" stroke="#4a7c6f" stroke-width="2"/>
+  <line x1="226" y1="226" x2="226" y2="206" stroke="#4a7c6f" stroke-width="2"/>
+</svg>

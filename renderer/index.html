@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBER BREACH PROTOCOL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Grid Overlay Pattern -->
+    <div class="grid-overlay"></div>
+    
+    <!-- Watermark -->
+    <div class="watermark">RESTRICTED</div>
+    
+    <!-- Classification Bar -->
+    <div class="classification-bar">
+        ⚠ INTERNAL USE ONLY — FOR AUTHORIZED IT PERSONNEL — PRODUCTION ENVIRONMENT
+    </div>
+    
+    <!-- Custom Title Bar -->
+    <div class="titlebar">
+        <div class="titlebar-drag">
+            <div class="app-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" style="vertical-align: middle;">
+                    <path d="M 7 1 L 12 4 L 12 10 L 7 13 L 2 10 L 2 4 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="5" y="6" width="4" height="4" fill="currentColor" opacity="0.3"/>
+                </svg>
+            </div>
+            <div class="app-title">SESSION MIGRATION TOOLKIT v3.7.2-STABLE</div>
+            <div class="build-info">BUILD 2024.11.0847</div>
+        </div>
+        <div class="titlebar-controls">
+            <button class="titlebar-btn" id="reload-btn">⟳</button>
+            <button class="titlebar-btn" id="minimize-btn">─</button>
+            <button class="titlebar-btn" id="maximize-btn">□</button>
+            <button class="titlebar-btn close-btn" id="close-btn">✕</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="status-indicator" id="connection-status"></div>
+                <div class="status-text" id="status-text">ОТКЛЮЧЕНО</div>
+            </div>
+            <div class="header-center">
+                <div class="mission-title">REMOTE SESSION SYNCHRONIZATION</div>
+            </div>
+            <div class="header-right">
+                <div class="system-monitors">
+                    <div class="monitor-item">
+                        <span class="monitor-label">CPU</span>
+                        <span class="monitor-value" id="cpu-value">47%</span>
+                        <div class="monitor-bar">
+                            <div class="monitor-bar-fill" id="cpu-bar" style="width: 47%"></div>
+                        </div>
+                    </div>
+                    <div class="monitor-item">
+                        <span class="monitor-label">RAM</span>
+                        <span class="monitor-value" id="ram-value">2.1GB</span>
+                        <div class="monitor-bar">
+                            <div class="monitor-bar-fill" id="ram-bar" style="width: 35%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="time-display" id="time-display">00:00:00</div>
+            </div>
+        </div>
+
+        <!-- Status Badges -->
+        <div class="badges" id="badges">
+            <div class="badge"><span>APP</span><strong id="badge-app">Viber</strong></div>
+            <div class="badge"><span>PROFILE</span><strong id="badge-profile">Standard</strong></div>
+            <div class="badge"><span>REGION</span><strong id="badge-region">EU</strong></div>
+            <div class="badge" id="badge-mode"><span>MODE</span><strong>ONLINE</strong></div>
+            <div class="badge ghost" id="badge-session"><span>SESSION</span><strong id="badge-session-id">—</strong></div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Left Panel: Control -->
+            <div class="panel control-panel">
+                <div class="panel-header">
+                    <div class="panel-title">TARGET CONFIGURATION</div>
+                    <div class="panel-indicator"></div>
+                </div>
+                
+                <div class="panel-content">
+                    <div class="preset-bar">
+                        <div class="preset-left">
+                            <label class="input-label" style="margin:0">ПРЕСЕТ</label>
+                            <select class="input-field" id="preset-select" style="height:36px">
+                                <option value="standard" selected>Standard</option>
+                                <option value="stealth">Stealth</option>
+                                <option value="aggressive">Aggressive</option>
+                            </select>
+                        </div>
+                        <div class="preset-right">
+                            <button class="mini-btn" id="export-report-btn">EXPORT REPORT</button>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <label class="input-label">ПРИЛОЖЕНИЕ</label>
+                        <select class="input-field" id="app-select">
+                            <option value="viber" selected>Viber</option>
+                            <option value="whatsapp">WhatsApp</option>
+                        </select>
+                    </div>
+                    <div class="input-section">
+                        <label class="input-label">TARGET IDENTIFIER</label>
+                        <input type="text" 
+                               class="input-field" 
+                               id="phone-number" 
+                               placeholder="+380XXXXXXXXX"
+                               spellcheck="false">
+                    </div>
+                    <div class="input-section">
+                        <label class="input-label">SYNC PROFILE</label>
+                        <select class="input-field" id="attack-profile">
+                            <option value="standard" selected>Standard</option>
+                            <option value="stealth">Stealth</option>
+                            <option value="aggressive">Aggressive</option>
+                        </select>
+                    </div>
+                    <div class="input-section">
+                        <label class="input-label">РЕГИОН</label>
+                        <select class="input-field" id="region-select">
+                            <option value="eu" selected>EU</option>
+                            <option value="us">US</option>
+                            <option value="asia">Asia</option>
+                        </select>
+                    </div>
+                    <div class="input-section">
+                        <label class="input-label">МОДУЛИ</label>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap">
+                            <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="module-hijack" checked> SESSION HIJACK</label>
+                            <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="module-mitm" checked> MITM PROXY</label>
+                            <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="module-token" checked> TOKEN CAPTURE</label>
+                            <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="module-cert" checked> CERT BYPASS</label>
+                        </div>
+                    </div>
+                    <div class="input-section" style="display:flex;align-items:center;gap:10px">
+                        <input type="checkbox" id="offline-demo">
+                        <label class="input-label" for="offline-demo" style="margin:0">ОФФЛАЙН-ДЕМО (без сети)</label>
+                    </div>
+                    <div class="input-section">
+                        <button class="action-btn" id="advanced-btn">
+                            <span class="btn-icon">⚙</span>
+                            <span class="btn-text">ADVANCED CONFIG</span>
+                        </button>
+                    </div>
+                    <details class="input-section">
+                        <summary class="input-label">ИНФРАСТРУКТУРА</summary>
+                        <div style="margin-top:10px">
+                            <label class="input-label">АДРЕС СЕРВЕРА</label>
+                            <input type="text" 
+                                   class="input-field" 
+                                   id="server-ip" 
+                                   placeholder="192.168.1.100"
+                                   spellcheck="false">
+                        </div>
+                    </details>
+
+                    <button class="action-btn" id="connect-btn">
+                        <span class="btn-icon">▶</span>
+                        <span class="btn-text">ESTABLISH CONNECTION</span>
+                    </button>
+
+                    <button class="action-btn primary-btn" id="breach-btn" disabled>
+                        <span class="btn-icon">◆</span>
+                        <span class="btn-text">START MIGRATION</span>
+                    </button>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span class="progress-label">СТАДИИ ОПЕРАЦИИ</span>
+                            <span class="progress-percent" id="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-steps" id="progress-steps">
+                            <div class="step" data-step="1">SCAN</div>
+                            <div class="step" data-step="2">PROTO</div>
+                            <div class="step" data-step="3">EXPLOIT</div>
+                            <div class="step" data-step="4">SESSION</div>
+                            <div class="step" data-step="5">INSTALL</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text" id="progress-text">ОЖИДАНИЕ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Terminal -->
+            <div class="panel terminal-panel">
+                <div class="panel-header">
+                    <div class="panel-title">СИСТЕМНЫЙ ТЕРМИНАЛ</div>
+                    <div class="panel-indicator active"></div>
+                </div>
+                
+                <div class="panel-content">
+                    <div class="tabs" id="terminal-tabs">
+                        <button class="tab active" data-tab="realtime">Realtime</button>
+                        <button class="tab" data-tab="network">Network</button>
+                        <button class="tab" data-tab="protocol">Protocol</button>
+                        <button class="tab" data-tab="actions">Actions</button>
+                    </div>
+                    <div class="terminal" id="terminal">
+                        <div class="log-entry log-system">[СИСТЕМА] Протокол взлома инициализирован</div>
+                        <div class="log-entry log-info">[ИНФО] Ожидание параметров цели...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Status Bar -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">PROTOCOL:</span>
+                <span class="status-value">TLS 1.3</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">ENCRYPTION:</span>
+                <span class="status-value">AES-256-GCM</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">SESSION:</span>
+                <span class="status-value" id="session-id">NULL</span>
+            </div>
+            <div class="network-activity" id="network-activity">
+                <span>↓ <span id="net-down">0</span> KB/s</span>
+                <span>↑ <span id="net-up">0</span> KB/s</span>
+            </div>
+        </div>
+        <div class="cert-info">OpenSSL 3.1.4 | Node.js v20.11.0 | Electron 28.1.3</div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="overlay" id="success-overlay">
+        <div class="overlay-content">
+            <div class="overlay-box">
+                <div class="overlay-icon">[ ✓ ]</div>
+                <div class="overlay-title">MIGRATION COMPLETE</div>
+                <div class="overlay-subtitle">SESSION TRANSFERRED SUCCESSFULLY</div>
+                <div class="overlay-code">
+                    STATUS: SYNC_COMPLETE<br>
+                    AUTHENTICATION: VERIFIED<br>
+                    SESSION: ACTIVE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Settings Modal -->
+    <div class="modal" id="advanced-modal" style="display:none">
+        <div class="modal-backdrop" id="advanced-close"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title">Advanced Synchronization Settings</div>
+                <button class="modal-x" id="advanced-x">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="section-title">MITM</div>
+                    <label><input type="checkbox" id="mitm-sslstrip" checked> SSL/TLS Strip</label>
+                    <label><input type="checkbox" id="mitm-arp" checked> ARP Spoofing</label>
+                    <label><input type="checkbox" id="mitm-dns" checked> DNS Hijacking</label>
+                    <label><input type="checkbox" id="mitm-pin" checked> Certificate Pinning Bypass</label>
+                    <div style="margin-top:8px"></div>
+                    <label>Interface
+                        <input class="input-field" id="mitm-iface" placeholder="ethernet0 | wlan0" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>Gateway IP
+                        <input class="input-field" id="mitm-gw" placeholder="192.168.1.1" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>DNS Spoof Table
+                        <textarea class="input-field" id="mitm-dns-table" placeholder="api.viber.com 10.0.0.5\nweb.whatsapp.com 10.0.0.5" style="height:72px;margin-top:6px"></textarea>
+                    </label>
+                    <label>Pin Bypass Strategy
+                        <select class="input-field" id="mitm-pin-strategy" style="height:36px;margin-top:6px">
+                            <option value="frida">Frida Hook</option>
+                            <option value="trustusercert">Trust User CA</option>
+                            <option value="disabled" selected>Disabled</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="modal-section">
+                    <div class="section-title">Session Hijacking</div>
+                    <label><input type="checkbox" id="sess-cookie" checked> Cookie/Token Capture</label>
+                    <label><input type="checkbox" id="sess-ws" checked> WebSocket Interception</label>
+                    <label><input type="checkbox" id="sess-qr" checked> QR Code Sniffing</label>
+                    <label><input type="checkbox" id="sess-oauth" checked> OAuth Token Stealing</label>
+                    <div style="margin-top:8px"></div>
+                    <label>JWT Regex
+                        <input class="input-field" id="sess-jwt" placeholder="eyJ[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>WS Endpoint
+                        <input class="input-field" id="sess-ws-endpoint" placeholder="wss://api.target/ws" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>QR Capture Path
+                        <input class="input-field" id="sess-qr-path" placeholder="C:\\captures\\qr.png" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>OAuth Client ID
+                        <input class="input-field" id="sess-oauth-client" placeholder="client-id-123" style="height:36px;margin-top:6px">
+                    </label>
+                </div>
+                <div class="modal-section">
+                    <div class="section-title">Protocol</div>
+                    <label><input type="checkbox" id="proto-xmpp" checked> XMPP Protocol Analysis</label>
+                    <label><input type="checkbox" id="proto-e2e" checked> End‑to‑End Encryption Bypass</label>
+                    <label><input type="checkbox" id="proto-multi" checked> Multi‑device Sync Exploit</label>
+                    <label><input type="checkbox" id="proto-push" checked> Push Notification Interception</label>
+                    <div style="margin-top:8px"></div>
+                    <label>XMPP Domain
+                        <input class="input-field" id="proto-xmpp-domain" placeholder="chat.viber.com" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>E2E Tolerance (ms)
+                        <input class="input-field" id="proto-e2e-tolerance" placeholder="150" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>Multi‑device SID
+                        <input class="input-field" id="proto-multi-sid" placeholder="A1B2C3D4" style="height:36px;margin-top:6px">
+                    </label>
+                    <label>Push Provider
+                        <select class="input-field" id="proto-push-provider" style="height:36px;margin-top:6px">
+                            <option value="fcm" selected>FCM</option>
+                            <option value="apns">APNs</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="modal-section">
+                    <div class="section-title">Network</div>
+                    <label>Порты: <input type="text" id="net-ports" value="443,5222,8080" spellcheck="false"></label>
+                    <label><input type="checkbox" id="net-sniff" checked> Packet Sniffing</label>
+                    <label><input type="checkbox" id="net-traffic" checked> Traffic Analysis</label>
+                    <label><input type="checkbox" id="net-proxy" checked> Proxy Chaining</label>
+                    <label>Proxy Chain
+                        <textarea class="input-field" id="net-proxy-chain" placeholder="socks5://127.0.0.1:9050\nhttp://proxy.local:8080" style="height:72px;margin-top:6px"></textarea>
+                    </label>
+                    <label>BPF Filter
+                        <input class="input-field" id="net-bpf" placeholder="tcp port 5222 or tcp port 443" style="height:36px;margin-top:6px">
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn" id="advanced-save"><span class="btn-text">СОХРАНИТЬ</span></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

