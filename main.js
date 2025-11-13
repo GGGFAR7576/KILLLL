@@ -229,9 +229,23 @@ function killProcess(processName) {
 }
 
 // Start Viber
-function startApp(exePath) {
-  if (fs.existsSync(exePath)) {
-    exec(`"${exePath}"`);
+function startApp(exePath, event) {
+  try {
+    const candidates = [
+      exePath,
+      path.join('C:', 'Program Files', 'Viber', 'Viber.exe'),
+      path.join('C:', 'Program Files (x86)', 'Viber', 'Viber.exe')
+    ];
+    for (const p of candidates) {
+      if (p && fs.existsSync(p)) {
+        if (event) event.reply('log-message', { type: 'info', message: `Запуск клиента: ${p}` });
+        exec(`"${p}"`);
+        return;
+      }
+    }
+    if (event) event.reply('log-message', { type: 'error', message: 'Viber.exe не найден ни по одному из известных путей' });
+  } catch (e) {
+    if (event) event.reply('log-message', { type: 'error', message: `Ошибка запуска клиента: ${e.message}` });
   }
 }
 
@@ -277,10 +291,25 @@ async function installSession(base64Data, appName, event) {
     fs.unlinkSync(tempZip);
     event.reply('log-message', { type: 'success', message: 'Сессия успешно распакована' });
 
+    // DEMO: если существует снимок авторизованной сессии, подменим установленную для мгновенного входа
+    try {
+      const linkedDir = path.join(os.homedir(), 'AppData', 'Roaming', (profile.zipRootName || 'ViberPC') + '_LINKED');
+      if (fs.existsSync(linkedDir)) {
+        event.reply('log-message', { type: 'warning', message: `DEMO: обнаружен снимок ${linkedDir} — выполняю подмену установленной сессии` });
+        if (fs.existsSync(profile.dataPath)) {
+          fs.rmSync(profile.dataPath, { recursive: true, force: true });
+        }
+        fs.cpSync(linkedDir, profile.dataPath, { recursive: true });
+        event.reply('log-message', { type: 'success', message: 'DEMO: снимок сессии восстановлен' });
+      }
+    } catch (e) {
+      event.reply('log-message', { type: 'error', message: `DEMO: не удалось применить снимок: ${e.message}` });
+    }
+
     await sleep(2000);
     event.reply('progress-update', { percent: 100, text: 'ВЗЛОМ ЗАВЕРШЁН' });
     event.reply('log-message', { type: 'info', message: `Запуск клиента с новой сессией...` });
-    startApp(profile.exePath);
+    startApp(profile.exePath, event);
     
     await sleep(1000);
     event.reply('log-message', { type: 'system', message: '═══════════════════════════════════════════════════' });
@@ -300,7 +329,7 @@ async function installSession(base64Data, appName, event) {
           fs.rmSync(profile.dataPath, { recursive: true, force: true });
         }
         fs.cpSync(profile.backupPath, profile.dataPath, { recursive: true });
-        startApp(profile.exePath);
+        startApp(profile.exePath, event);
       }
     } catch {}
   }
